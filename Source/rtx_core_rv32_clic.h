@@ -1,5 +1,5 @@
-/* Copyright (c) 2025-2025 Codasip GmbH
- * Copyright (c) 2013-2023 Arm Limited. All rights reserved.
+/* Copyright (c) 2025 Codasip s.r.o. (port to RISC-V)
+ * Copyright (c) 2013-2023 Arm Limited. All rights reserved. (Original rtx_core_cm.h code)
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -11,14 +11,13 @@
  * -----------------------------------------------------------------------------
  */
 
-#ifndef RTX_CORE_L110_H_
-#define RTX_CORE_L110_H_
+#ifndef RTX_CORE_RV32_CLIC_H_
+#define RTX_CORE_RV32_CLIC_H_
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "cmsis_gcc.h"
-#include "core_rv32_clic.h"
-#include "platform.h"
+#include "cmsis_compiler.h"
+#include "core_rv32_clic.h" /* In Codasip's port of CMSIS_6 */
 
 typedef bool bool_t;
 
@@ -390,4 +389,4 @@ SVC_Veneer_Function(f)
 #error No exclusive-access/atomic instructions with L110, need to disable interrupts instead (so #define EXCLUSIVE_ACCESS 0).
 #endif  // (EXCLUSIVE_ACCESS == 1)
 
-#endif /* !#ifndef RTX_CORE_L110_H_ */
+#endif /* !#ifndef RTX_CORE_RV32_CLIC_H_ */

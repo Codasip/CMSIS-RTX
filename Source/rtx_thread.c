@@ -1,6 +1,6 @@
 /*
+ * Copyright (C) 2025 Codasip s.r.o. (port to RISC-V)
  * Copyright (c) 2013-2023 Arm Limited. All rights reserved.
- * Copyright (C) 2025 Codasip GmbH (RISC-V Code)
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -1065,7 +1065,7 @@ static osThreadId_t svcRtxThreadNew (osThreadFunc_t func, void *argument, const 
     ptr[8]  = (uint32_t)argument;       // R0
     ptr[9]  = (uint32_t)func;           // R1
 
-#else
+#else /* __riscv */
     // RISC-V
     uint32_t gp, tp;    /* Global pointer and thread pointer */
 
@@ -1101,7 +1101,7 @@ static osThreadId_t svcRtxThreadNew (osThreadFunc_t func, void *argument, const 
 #endif
     ptr[RTX_CONTEXT_A0_IDX    ]  = (uint32_t)argument;       // A0
     ptr[RTX_CONTEXT_A0_IDX + 1]  = (uint32_t)func;           // A1
-#endif
+#endif /* __riscv */
 
     // Register post ISR processing function
     osRtxInfo.post_process.thread = osRtxThreadPostProcess;

@@ -1,5 +1,5 @@
-/* Copyright (c) 2025 Codasip GmbH
- * Copyright (c) 2013-2023 Arm Limited. All rights reserved. (RTX names and definitions)
+/* Copyright (c) 2025 Codasip s.r.o. (port to RISC-V)
+ * Copyright (c) 2013-2023 Arm Limited. All rights reserved. (RTX names and definitions from irq_armv6m.S)
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -39,7 +39,7 @@
 #endif
 
 #include "rtx_def.h"
-#include "platform.h"
+#include "platform.h"   /* For CLICINT_ADDR definition */
 
     .equ     I_T_RUN_OFS,       20  // osRtxInfo.thread.run offset
     .equ     TCB_SP_OFS,        56  // TCB.SP offset
@@ -293,7 +293,7 @@ SVC_Interrupt_Exit:
 #else
     /* Inlined call to codasip_clic_irq_clear_pending() */
     slli    a0, a0, 0x2
-    la      a5, CLICINT_ADDR
+    li      a5, CLICINT_ADDR
     add     a5, a5, a0
     lbu     a4, 0(a5)
     andi    a4, a4, -2
