@@ -32,6 +32,9 @@ typedef bool bool_t;
 #define EXCLUSIVE_ACCESS        0   /* No atomic instructions with L110, need to disable interrupts instead */
 
 #define OS_TICK_HANDLER         NULL /* Was SysTick_Handler. This is ignored by OS_Tick_Setup() and hard coded in to irq_codasip_l110.S */
+#ifndef SOFTWARE_IRQ
+#error Please define SOFTWARE_IRQ to a free CLIC Interrupt line, required for RTX Pending Service Call deferred interrupt (OS_PEND_SV_IRQ).
+#endif
 #define OS_PEND_SV_IRQ          SOFTWARE_IRQ
 
 #define RTX_CONTEXT_REGS        (32U)
