@@ -51,6 +51,11 @@
     .equ     osRtxErrorSVC,           6 // Invalid SVC function called
 #endif
 
+    .section ".rodata"
+    .global  irqRtxLib              // Non weak library reference
+irqRtxLib:
+    .byte    0
+
 /******************************************************************************/
 /* Define SVC_FAST to 1 to only stack out registers that need saving at that time,
  * so making SVC calls faster when no context switch is required */
